@@ -7,7 +7,7 @@ public class TakePinsGame {
         //setup
         Board game = new Board();
         game.setUp(UserInterface.askForInt("Select start amount of pins", "|"+game.getNoPins()+"|"));
-        Player[] players = new Player[] {new HumanPlayer("Jesper"),new ComputerPlayer("COMPUTER [INSANE]")};
+        Player[] players = new Player[] {new HumanPlayer("Jesper"),new ComputerPlayerTwo("COMPUTER [INSANE]")};
 
         //welcome message and randomise a starting player
         Random rand = new Random();
