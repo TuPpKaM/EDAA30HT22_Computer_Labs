@@ -14,7 +14,7 @@ public class HumanPlayer extends Player {
         } else if (amount == -2) { 
             return -2; //Close
         } else {
-            return -3; //Restart choice
+            return -1; //Restart choice
         }
     }
 

@@ -6,7 +6,14 @@ public class TakePinsGame {
     public static void main(String[] args) {
         //setup
         Board game = new Board();
-        game.setUp(UserInterface.askForInt("Select start amount of pins", "|"+game.getNoPins()+"|"));
+        int selectedPins = -1;
+        while(selectedPins == -1) {  // == -1 means retry
+            selectedPins = UserInterface.askForInt("Select start amount of pins", "|"+game.getNoPins()+"|");
+            if (selectedPins == -2) {
+                System.exit(0); // == -2 close program
+            }
+        } 
+        game.setUp(selectedPins);
         Player[] players = new Player[] {new HumanPlayer("Jesper"),new ComputerPlayerTwo("COMPUTER [INSANE]")};
 
         //welcome message and randomise a starting player
@@ -17,8 +24,8 @@ public class TakePinsGame {
         //game phase
         while (game.getNoPins() > 0){
             playerIndex ^= 1;
-            int returnedInt = -3;
-            while(returnedInt == -3) {  // == -3 means retry
+            int returnedInt = -1;
+            while(returnedInt == -1) {  // == -1 means retry
                 returnedInt = players[playerIndex].takePins(game);
                 if ((returnedInt) == -2) { // == -2 close program
                     System.exit(0); 
