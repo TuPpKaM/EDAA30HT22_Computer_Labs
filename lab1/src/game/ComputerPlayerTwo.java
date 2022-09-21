@@ -8,8 +8,9 @@ public class ComputerPlayerTwo extends Player {
 
     public int takePins(Board b){
         int amount = 2;
-        if (b.getNoPins()-amount<0)  {
-            b.takePins(b.getNoPins()); //Prevent pins from becoming negative
+        if (b.getNoPins()-amount<=0)  {
+            amount = b.getNoPins();
+            b.takePins(amount); 
         } else if(b.getNoPins()==5) {
             b.takePins(amount);
         }else {
