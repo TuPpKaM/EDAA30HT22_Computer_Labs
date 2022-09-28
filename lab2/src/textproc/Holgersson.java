@@ -17,8 +17,10 @@ public class Holgersson {
 		ArrayList<TextProcessor> proList = new ArrayList<TextProcessor>();
 		proList.add(new SingleWordCounter("nils"));
 		proList.add(new SingleWordCounter("norge"));
+		proList.add(new MultiWordCounter(REGIONS));
+		proList.add(new GeneralWordCounter());
 
-		Scanner s = new Scanner(new File("lab2/nilsholg.txt"));
+		Scanner s = new Scanner(new File("lab2/nilsholg.txt"), "UTF-8");
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
