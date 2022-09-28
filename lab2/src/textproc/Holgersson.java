@@ -15,7 +15,7 @@ public class Holgersson {
 		
 		TextProcessor p = new SingleWordCounter("nils");
 
-		Scanner s = new Scanner(new File("nilsholg.txt"));
+		Scanner s = new Scanner(new File("lab2/nilsholg.txt"));
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
