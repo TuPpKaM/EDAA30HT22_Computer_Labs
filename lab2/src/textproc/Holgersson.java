@@ -14,6 +14,8 @@ public class Holgersson {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
+		long t0 = System.nanoTime();
+
 		ArrayList<TextProcessor> proList = new ArrayList<TextProcessor>();
 		proList.add(new SingleWordCounter("nils"));
 		proList.add(new SingleWordCounter("norge"));
@@ -35,5 +37,10 @@ public class Holgersson {
 		for (TextProcessor p : proList) {
 			p.report();
 		}
+
+		long t1 = System.nanoTime();
+		System.out.println("-----------------------------");
+		System.out.println("time: "+ (t1-t0)/1000000.0 +" ms");
+		System.out.println("-----------------------------");
 	}
 }
