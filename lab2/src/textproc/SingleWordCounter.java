@@ -16,7 +16,9 @@ public class SingleWordCounter implements TextProcessor {
 	}
 
 	public void report() {
+		System.out.println("-----------------------------");
 		System.out.println(word + ": " + n);
+		System.out.println("-----------------------------");
 	}
 
 }

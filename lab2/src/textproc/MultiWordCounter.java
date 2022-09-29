@@ -9,9 +9,6 @@ public class MultiWordCounter implements TextProcessor {
         for (String s : words) {
             this.words.put(s, 0);
         }
-        for (String key : this.words.keySet())  {
-            System.out.println(key + ": " + this.words.get(key));
-        }
     }
 
     public void process(String word) {
@@ -24,8 +21,10 @@ public class MultiWordCounter implements TextProcessor {
 	}
 
     public void report() {
+        System.out.println("-----------------------------");
         for (String key : words.keySet())  {
             System.out.println(key + ": " + words.get(key));
         }
+        System.out.println("-----------------------------");
 	}
 }

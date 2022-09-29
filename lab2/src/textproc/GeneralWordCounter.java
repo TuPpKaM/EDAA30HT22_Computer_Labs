@@ -19,9 +19,6 @@ public class GeneralWordCounter implements TextProcessor {
         while (scan.hasNext()) {
 			stopwords.add(scan.next().toLowerCase());
 		}
-        for (String s : stopwords) {
-            System.out.println(s);
-        }
     }
 
     public void process(String word) {
@@ -42,11 +39,17 @@ public class GeneralWordCounter implements TextProcessor {
         } */
         
         List<Map.Entry<String, Integer>> wordList = new ArrayList<>(words.entrySet());
-        wordList.sort((w1 , w2)-> (w2.getValue()-w1.getValue()));
+        wordList.sort( (w1 , w2) -> { //falling by amount then rising name
+            if (w2.getValue()-w1.getValue()==0) {
+                return w1.getKey().compareTo(w2.getKey());
+            } else {
+                return w2.getValue()-w1.getValue();
+            }
+        });
 
 
         System.out.println("-----------------------------");
-        for (int i =0; i<5; i++) {
+        for (int i =0; i<10; i++) {
             System.out.println(wordList.get(i));
         }
         System.out.println("-----------------------------");
