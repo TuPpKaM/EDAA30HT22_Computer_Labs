@@ -17,11 +17,13 @@ public class MultiWordCounter implements TextProcessor {
         }
 	}
 
-    public void report() {
-        System.out.println("-----------------------------");
+    public String[] report() {
+        String[] result = new String[words.size()];
+        int i = 0;
         for (String key : words.keySet())  {
-            System.out.println(key + ": " + words.get(key));
+            result[i] = key + ": " + words.get(key);
+            i++;
         }
-        System.out.println("-----------------------------");
+        return result;
 	}
 }

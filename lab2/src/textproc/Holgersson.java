@@ -3,7 +3,9 @@ package textproc;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Holgersson {
 
@@ -18,7 +20,7 @@ public class Holgersson {
 		ArrayList<TextProcessor> proList = new ArrayList<TextProcessor>();
 		proList.add(new SingleWordCounter("nils"));
 		proList.add(new SingleWordCounter("norge"));
-		proList.add(new MultiWordCounter(REGIONS));
+		//proList.add(new MultiWordCounter(REGIONS));
 		proList.add(new GeneralWordCounter());
 
 		Scanner s = new Scanner(new File("lab2/nilsholg.txt"), "UTF-8");
@@ -33,15 +35,18 @@ public class Holgersson {
 		}
 
 		s.close();
-		for (TextProcessor p : proList) {
+		/* for (TextProcessor p : proList) {
 			p.report();
-		}
-
+		} */
+		
 		long t1 = System.nanoTime();
-		System.out.println("-----------------------------");
-		System.out.println("time: "+ (t1-t0)/1000000.0 +" ms");
-		System.out.println("-----------------------------");
-		String[] rows = {(t1-t0)/1000000.0+" s"};
-		UserView u = new UserView("Results", rows);
+		TreeMap<String,String[]> displayU = new TreeMap<String,String[]>();
+		String[] timeResult = {(t1-t0)/1000000.0+" s"};
+		displayU.put("Time:", timeResult);
+		displayU.put("1 Results:", proList.get(0).report());
+		displayU.put("2 Results:", proList.get(1).report());
+		displayU.put("3 Results:", proList.get(2).report());
+
+		UserView u = new UserView("Result display", displayU);
 	}
 }

@@ -31,7 +31,7 @@ public class GeneralWordCounter implements TextProcessor {
         }
 	}
 
-    public void report() {
+    public String[] report() {
         /* for (String key : words.keySet())  {
             if (words.get(key)>=200) {
                 System.out.println(key + ": " + words.get(key));
@@ -48,11 +48,11 @@ public class GeneralWordCounter implements TextProcessor {
         });
 
 
-        System.out.println("-----------------------------");
-        for (int i =0; i<10; i++) {
-            System.out.println(wordList.get(i).getKey() + ": " + wordList.get(i).getValue());
+        String[] result = new String[10];
+        for (int i =0; i<result.length; i++) {
+            result[i] = wordList.get(i).getKey() + ": " + wordList.get(i).getValue();
         }
-        System.out.println("-----------------------------");
+        return result;
 	}
 }
 

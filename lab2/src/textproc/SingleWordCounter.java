@@ -15,10 +15,10 @@ public class SingleWordCounter implements TextProcessor {
 		}
 	}
 
-	public void report() {
-		System.out.println("-----------------------------");
-		System.out.println(word + ": " + n);
-		System.out.println("-----------------------------");
+	public String[] report() {
+		String[] result = new String[1];
+		result[0] = word + ": " + n;
+        return result;
 	}
 
 }

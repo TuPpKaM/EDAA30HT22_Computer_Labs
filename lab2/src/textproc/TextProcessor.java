@@ -13,5 +13,5 @@ public interface TextProcessor {
 	 * Anropas när samtliga ord i sekvensen lästs in. Metoden ska skriva ut
 	 * en sammanställning av statistiken.
 	 */
-	void report();
+	String[] report();
 }
