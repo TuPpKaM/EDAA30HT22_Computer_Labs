@@ -13,7 +13,6 @@ public class Holgersson {
 			"öland", "östergötland" };
 
 	public static void main(String[] args) throws FileNotFoundException {
-		
 		long t0 = System.nanoTime();
 
 		ArrayList<TextProcessor> proList = new ArrayList<TextProcessor>();
@@ -42,5 +41,7 @@ public class Holgersson {
 		System.out.println("-----------------------------");
 		System.out.println("time: "+ (t1-t0)/1000000.0 +" ms");
 		System.out.println("-----------------------------");
+		String[] rows = {(t1-t0)/1000000.0+" s"};
+		UserView u = new UserView("Results", rows);
 	}
 }

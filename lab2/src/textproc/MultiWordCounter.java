@@ -12,11 +12,8 @@ public class MultiWordCounter implements TextProcessor {
     }
 
     public void process(String word) {
-		for (String key : words.keySet())  {
-            if (key.equals(word)) {
-                words.merge(key, 1, Integer::sum);
-            }
-            
+        if (words.containsKey(word)) {
+            words.merge(word, 1, Integer::sum);
         }
 	}
 

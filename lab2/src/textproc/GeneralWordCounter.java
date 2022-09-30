@@ -50,7 +50,7 @@ public class GeneralWordCounter implements TextProcessor {
 
         System.out.println("-----------------------------");
         for (int i =0; i<10; i++) {
-            System.out.println(wordList.get(i));
+            System.out.println(wordList.get(i).getKey() + ": " + wordList.get(i).getValue());
         }
         System.out.println("-----------------------------");
 	}
