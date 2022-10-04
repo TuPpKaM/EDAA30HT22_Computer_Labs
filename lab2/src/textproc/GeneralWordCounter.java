@@ -1,24 +1,18 @@
 package textproc;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class GeneralWordCounter implements TextProcessor {
-    HashMap<String,Integer> words = new HashMap<String,Integer>();
-    Set<String> stopwords = new TreeSet<String>();
+    Map<String,Integer> words = new HashMap<String,Integer>();
+    Set<String> stopwords = new HashSet<String>();
 
-    public GeneralWordCounter() throws FileNotFoundException {
-        Scanner scan = new Scanner(new File("lab2/undantagsord.txt"), "UTF-8");
-        while (scan.hasNext()) {
-			stopwords.add(scan.next().toLowerCase());
-		}
+    public GeneralWordCounter(Set<String> stopwords) {
+        this.stopwords=stopwords;
     }
 
     public void process(String word) {
@@ -32,21 +26,9 @@ public class GeneralWordCounter implements TextProcessor {
 	}
 
     public void report() {
-        /* for (String key : words.keySet())  {
-            if (words.get(key)>=200) {
-                System.out.println(key + ": " + words.get(key));
-            }
-        } */
-        
         List<Map.Entry<String, Integer>> wordList = new ArrayList<>(words.entrySet());
-        wordList.sort( (w1 , w2) -> { //falling by amount then rising name
-            if (w2.getValue()-w1.getValue()==0) {
-                return w1.getKey().compareTo(w2.getKey());
-            } else {
-                return w2.getValue()-w1.getValue();
-            }
-        });
-
+        wordList.sort((w1 , w2) -> w1.getKey().compareTo(w2.getKey())); 
+        wordList.sort((w1 , w2) -> w2.getValue()-w1.getValue());   //falling by amount then rising name
 
         System.out.println("-----------------------------");
         for (int i =0; i<10; i++) {

@@ -1,9 +1,10 @@
 package textproc;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class MultiWordCounter implements TextProcessor {
-    HashMap<String,Integer> words = new HashMap<String,Integer>();
+    Map<String,Integer> words = new HashMap<String,Integer>();
 
     public MultiWordCounter(String[] words) {
         for (String s : words) {
