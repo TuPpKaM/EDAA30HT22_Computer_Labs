@@ -25,6 +25,12 @@ public class GeneralWordCounter implements TextProcessor {
         }
 	}
 
+    public List<Map.Entry<String, Integer>> getWordList() {
+        List<Map.Entry<String, Integer>> wordList = new ArrayList<>(words.entrySet());
+        return wordList;
+        }
+        
+
     public void report() {
         List<Map.Entry<String, Integer>> wordList = new ArrayList<>(words.entrySet());
         wordList.sort((w1 , w2) -> w1.getKey().compareTo(w2.getKey())); 
