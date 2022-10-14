@@ -16,21 +16,24 @@ public class BookReaderApplication {
 
         Set<String> stopwords = new HashSet<String>();
         Scanner scan = new Scanner(new File("lab2/undantagsord.txt"), "UTF-8");
+
         while (scan.hasNext()) {
             stopwords.add(scan.next().toLowerCase());
         }
         scan.close();
 
         GeneralWordCounter gWCounter = new GeneralWordCounter(stopwords);
-        BookReaderController bRController = new BookReaderController(gWCounter);
 
         Scanner s = new Scanner(new File("lab2/nilsholg.txt"), "UTF-8");
         s.findWithinHorizon("\uFEFF", 1);
-        s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
+        s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+");
+
         while (s.hasNext()) {
             String word = s.next().toLowerCase();
             gWCounter.process(word);
         }
+
+        new BookReaderController(gWCounter);
 
         s.close();
     }

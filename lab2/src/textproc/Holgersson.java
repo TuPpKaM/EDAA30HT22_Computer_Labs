@@ -30,7 +30,6 @@ public class Holgersson {
 		proList.add(new SingleWordCounter("norge"));
 		proList.add(new MultiWordCounter(REGIONS));
 		proList.add(new GeneralWordCounter(stopwords));
-		BookReaderController brc = new BookReaderController(new GeneralWordCounter(stopwords));
 
 		Scanner s = new Scanner(new File("lab2/nilsholg.txt"), "UTF-8");
 		s.findWithinHorizon("\uFEFF", 1);
