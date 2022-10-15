@@ -19,6 +19,7 @@ public class BookReaderController {
     }
 
     private void createWindow(GeneralWordCounter counter, String title, int width, int height) {
+
         JFrame frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize(new Dimension(width, height));
@@ -38,23 +39,22 @@ public class BookReaderController {
         JPanel menurow = new JPanel();
         JButton alphabetic = makeButton("Alphabetic");
         JButton frequency = makeButton("Frequency");
-        alphabetic.addActionListener(e -> wordlist.sort( (Map.Entry<String, Integer> w1, Map.Entry<String, Integer> w2) -> w1.getKey().compareTo((w2).getKey())));
         frequency.addActionListener(e -> wordlist.sort( (Map.Entry<String, Integer> w1, Map.Entry<String, Integer> w2) -> w2.getValue()-w1.getValue()));
         menurow.add(alphabetic);
         menurow.add(frequency);
-
-        JPanel searchbar = new JPanel();
+        
         JTextField textfield = new JTextField();
         textfield.setPreferredSize(new Dimension(300,35));
-        searchbar.add(textfield);
+        menurow.add(textfield);
         JButton searchbtn = makeButton("Search");
-        searchbar.add(searchbtn);
-        pane.add(searchbar, BorderLayout.NORTH);
+        menurow.add(searchbtn);
+        alphabetic.addActionListener(e -> wordlist.sort( (Map.Entry<String, Integer> w1, Map.Entry<String, Integer> w2) -> w1.getKey().compareTo((w2).getKey())));
         searchbtn.addActionListener(e -> {
-            for (int i = 0; i<counter.getWordList().size(); i++) {
-                if (counter.getWordList().get(i).getKey().equals(textfield.getText())) {
+            for (int i = 0; i<wordlist.getSize(); i++) {
+                if (wordlist.getElementAt(i).getKey().equals(textfield.getText())) {
                     jlist.ensureIndexIsVisible(i);
                     jlist.setSelectedIndex(i);
+                    System.out.print("|"+wordlist.getElementAt(i).getKey() + "|"+textfield.getText()+ "|"+i+"|");
                     return;
                 }
             }
