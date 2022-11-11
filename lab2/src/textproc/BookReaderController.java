@@ -31,7 +31,7 @@ public class BookReaderController {
         Container pane = frame.getContentPane();
         pane.setLayout(new BorderLayout());
 
-        SortedListModel<Map.Entry<String, Integer>> wordlist = new SortedListModel<Map.Entry<String, Integer>>(counter.getWordList());
+        SortedListModel<Map.Entry<String, Integer>> wordlist = new SortedListModel<>(counter.getWordList());
         JList<Map.Entry<String, Integer>> jlist = new JList<Map.Entry<String, Integer>>(wordlist);
         JScrollPane scrollpane = new JScrollPane(jlist);
         scrollpane.setBackground(Color.WHITE);
@@ -62,17 +62,17 @@ public class BookReaderController {
         });
         alphabetic.addActionListener(e -> {
             if (falling) {
-                wordlist.sort((Map.Entry<String, Integer> w1, Map.Entry<String, Integer> w2) -> w2.getKey().compareTo((w1).getKey()));
+                wordlist.sort((w1, w2) -> w2.getKey().compareTo((w1).getKey()));
             } else {
-                wordlist.sort((Map.Entry<String, Integer> w1, Map.Entry<String, Integer> w2) -> w1.getKey().compareTo((w2).getKey()));
+                wordlist.sort((w1, w2) -> w1.getKey().compareTo((w2).getKey()));
             }
             frequency.setSelected(false);
         });
         frequency.addActionListener(e -> {
             if (falling) {
-                wordlist.sort((Map.Entry<String, Integer> w1, Map.Entry<String, Integer> w2) -> w2.getValue()-w1.getValue());
+                wordlist.sort((w1, w2) -> w2.getValue()-w1.getValue());
             } else {
-                wordlist.sort((Map.Entry<String, Integer> w1, Map.Entry<String, Integer> w2) -> w1.getValue()-w2.getValue());
+                wordlist.sort((w1, w2) -> w1.getValue()-w2.getValue());
             }
             alphabetic.setSelected(false);
         });
