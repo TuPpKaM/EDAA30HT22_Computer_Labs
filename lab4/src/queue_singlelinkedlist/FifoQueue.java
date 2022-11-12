@@ -21,10 +21,12 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	public boolean offer(E e) {
 		if(last==null) {
 			last = new QueueNode<E>(e);
+			last.next = last;
 		} else {
 			QueueNode<E> save = last;
 			last = new QueueNode<E>(e);
-			last.next = save;
+			last.next = save.next;
+			save.next = last;
 		}
 
 		size++;
@@ -46,19 +48,10 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * 			if this queue is empty
 	 */
 	public E peek() {
-		if(last==null) {
+		if (last==null){
 			return null;
 		}
-		
-		if (last.next==null){
-			return last.element;
-		}
-
-		QueueNode<E> save = last.next;
-		while (save.next != null){
-			save = save.next;
-		}
-		return save.element;
+		return last.next.element;
 	}
 
 	/**	
@@ -68,23 +61,17 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return 	the head of this queue, or null if the queue is empty 
 	 */
 	public E poll() {
-		if(last==null) {
+		if (last==null){
 			return null;
 		}
-		
-		if (last.next==null){
+		if(size==1) {
 			E element = last.element;
-			last = null;
+			last=null;
 			size--;
 			return element;
 		}
-
-		QueueNode<E> save = last;
-		while (save.next.next != null){
-			save = save.next;
-		}
-		E element = save.next.element;
-		save.next=null;
+		E element = last.next.element;
+		last.next = last.next.next;
 		size--;
 		return element;
 	}
@@ -94,7 +81,27 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return an iterator over the elements in this queue
 	 */	
 	public Iterator<E> iterator() {
-		return null;
+		return QueueIterator();
+	}
+
+
+
+	private class QueueIterator implements Iterator<E> {
+		private QueueNode<E> pos;
+
+		private QueueIterator(){
+		}
+
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public E next() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	
 	}
 	
 	private static class QueueNode<E> {
