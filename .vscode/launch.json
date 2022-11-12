@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch BookReaderApplication",
+            "request": "launch",
+            "mainClass": "textproc.BookReaderApplication",
+            "projectName": "EDAA30HT22_Computer_Labs_ec123f13"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
