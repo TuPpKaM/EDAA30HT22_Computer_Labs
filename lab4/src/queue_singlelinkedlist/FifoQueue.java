@@ -92,14 +92,26 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	* @throws IllegalArgumentException if this queue and q are identical
 	*/
 	public void append(FifoQueue<E> q) {
-		if(this==q){
+		if(this==q || (this.last==null && q.last==null)){
 			throw new IllegalArgumentException();
-		}
+		} else if (this.last==null){
+			this.last=q.last;
+			this.size=q.size(); // q.size or q.size() ?? fråga
+		} else if (q.last!=null){
+			this.size = this.size + q.size();
 
-		QueueNode<E> save = q.last;
-		QueueNode<E> save2 = this.last.next;
-		this.last.next=save.next;
-		q.last.next = save2;
+			QueueNode<E> save = new QueueNode<E>(q.last.element);
+			save.next = q.last.next;
+			QueueNode<E> save2 = new QueueNode<E>(save.next.element);
+			save2.next = save.next.next;
+
+			save.next = this.last.next;
+			this.last.next = save2;
+			this.last = save;
+
+		}
+		q.size=0;
+		q.last=null;
 	}
 
 
