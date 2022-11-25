@@ -9,6 +9,13 @@
             "name": "Launch FractalApplication",
             "request": "launch",
             "mainClass": "fractal.FractalApplication",
+            "projectName": "EDAA30HT22_Computer_Labs_ec123f13"
+        },
+        {
+            "type": "java",
+            "name": "Launch FractalApplication",
+            "request": "launch",
+            "mainClass": "fractal.FractalApplication",
             "projectName": "EDAA30HT22_Labbar_a98abfb8"
         },
         {
