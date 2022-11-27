@@ -48,8 +48,10 @@ class TestAppendFifoQueue {
 	 * Test append of two empty queues
 	 */
 	@Test
-	void testEmptyAppendQueue() {
-        assertThrows(IllegalArgumentException.class, () -> myIntQueue.append(myIntQueue2));
+	void testEmptyAppendEmptyQueue() {
+        myIntQueue.append(myIntQueue2);
+        assertEquals(0, myIntQueue.size(), "Wrong size of empty queue");
+        assertEquals(0, myIntQueue2.size(), "Wrong size of empty queue");
     }
 
     /**
@@ -117,7 +119,6 @@ class TestAppendFifoQueue {
         Iterator<Integer> itr = myIntQueue.iterator();
         for (int i = 1; i <= nbr; i++) {
             int r = itr.next();
-            System.out.println(r);
             assertEquals(Integer.valueOf(i), r, "Wrong result from next");
         }
         for (int i = 1; i <= nbr; i++) {

@@ -39,7 +39,7 @@ public class Mountain extends Fractal {
         Point p3 = new Point(350,119);
 
         turtle.penDown();
-		fractalTriangle(turtle,order,length,p1,p2,p3,dev);
+		fractalTriangle(turtle,order,p1,p2,p3,dev);
         turtle.penUp();
 	}
 
@@ -47,13 +47,12 @@ public class Mountain extends Fractal {
 	 * Reursive method: Draws a recursive triangle inside triangle.
      * @param turtle the turtle graphic object
      * @param order the order of fractal
-     * @param length the length of a side int he triangle
      * @param p1 the first corner of the outer triangle
      * @param p2 the secound corner of the outer triangle 
      * @param p3 the third corner of the outer triangle 
      * @param dev the start value for calucating offset in the y-axis 
 	 */
-	private void fractalTriangle(TurtleGraphics turtle, int order, int length, Point p1, Point p2, Point p3, Double dev) {
+	private void fractalTriangle(TurtleGraphics turtle, int order, Point p1, Point p2, Point p3, Double dev) {
 		if (order == 0) {
             turtle.moveTo(p1.getX(), p1.getY());     //start in 1 and then draw to 2, then to 3 and back to 1
 		    turtle.forwardTo(p2.getX(),p2.getY());
@@ -64,10 +63,10 @@ public class Mountain extends Fractal {
             Point p23 = checkMiddle(p2, p3, dev);
             Point p13 = checkMiddle(p1, p3, dev);
 
-            fractalTriangle(turtle, order-1, length/2, p1, p12, p13, dev/2); // draws from corner 1 out to 2 and 3
-            fractalTriangle(turtle, order-1, length/2, p12, p2, p23, dev/2); // draws from corner 2 out to 1 and 3
-            fractalTriangle(turtle, order-1, length/2, p13, p23, p3, dev/2); // draws from corner 3 out to 1 and 2
-            fractalTriangle(turtle, order-1, length/2, p12, p23, p13, dev/2); //center triangle connects them all up
+            fractalTriangle(turtle, order-1, p1, p12, p13, dev/2); // draws from corner 1 out to 2 and 3
+            fractalTriangle(turtle, order-1, p12, p2, p23, dev/2); // draws from corner 2 out to 1 and 3
+            fractalTriangle(turtle, order-1, p13, p23, p3, dev/2); // draws from corner 3 out to 1 and 2
+            fractalTriangle(turtle, order-1, p12, p23, p13, dev/2); //center triangle connects them all up
         }
 	}
     /** 
@@ -80,9 +79,7 @@ public class Mountain extends Fractal {
     private Point checkMiddle(Point p1, Point p2, Double dev){
         Side side = new Side(p1,p2);
         if (middles.containsKey(side)) { //middle already exist for side, use existing point
-            Point oldMiddleP = middles.get(side);
-            middles.remove(side); //remove used side-point pair
-            return oldMiddleP;
+            return middles.remove(side); //remove used side-point pair and return
 
         } else { //middle doesn't exist, create a new one with offset
             int x = (p1.getX()+p2.getX())/2;
