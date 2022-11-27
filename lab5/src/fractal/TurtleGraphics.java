@@ -1,4 +1,5 @@
 package fractal;
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class TurtleGraphics {
@@ -6,6 +7,7 @@ public class TurtleGraphics {
 	private double x, y;
 	private double alpha;
 	private boolean isPenDown;
+	private Color color;
 
 	/** Creates a turtle graphics object that can draw lines in a drawing area. 
 	 * At start the turtle location is (0,0), the direction is north and he drawing pen is lowered.
@@ -17,6 +19,7 @@ public class TurtleGraphics {
 		y = 0;
 		alpha = 90;
 		isPenDown = true;
+		color = Color.black;
 	}
 
 	/** The turtle moves to the location (newX,newY) without drawing.
@@ -46,6 +49,7 @@ public class TurtleGraphics {
 	public void forward(double n) {
 		double oldX = x;
 		double oldY = y;
+		g.setColor(color);
 		x = x + n * Math.cos(alpha * Math.PI / 180);
 		y = y - n * Math.sin(alpha * Math.PI / 180);
 		if (isPenDown) {
@@ -128,6 +132,14 @@ public class TurtleGraphics {
 	 */
 	public int getHeight() {
 		return (int) g.getClipBounds().getHeight();
+	}
+
+	public void setColor(Color color){
+		this.color=color;
+	}
+
+	public Color getColor(){
+		return color;
 	}
 
 }
