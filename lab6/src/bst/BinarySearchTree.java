@@ -43,7 +43,6 @@ public class BinarySearchTree<E> {
 
 	private Boolean addNode(BinaryNode<E> node, E x){
 		int compareValue = ccomparator.compare(x, node.element);
-		System.out.println(compareValue +""+x);
 		if (compareValue<0) { //smaller
 			if (node.left == null) {
 				node.left = new BinaryNode<E>(x);
@@ -114,15 +113,15 @@ public class BinarySearchTree<E> {
 		if (root == null){
 			System.out.println("Empty tree");
 		} else {
-			printer(root, 1);
+			printer(root);
 		}
 	}
 
-	private void printer(BinaryNode<E> node, int height){
+	private void printer(BinaryNode<E> node){
 		if (node!= null){
-			printer(node.left,height+1);
-			System.out.println("ELEMENT: "+node.element + "    HEIGHT: " + height + ">");
-			printer(node.right,height+1);
+			printer(node.left);
+			System.out.print(" "+node.element);
+			printer(node.right);
 		}
 		
 	}
@@ -133,7 +132,6 @@ public class BinarySearchTree<E> {
 	public void rebuild() {
 		ArrayList<E> sorted = new ArrayList<E>();
 		toArray(root, sorted);
-		System.out.println("sorted: "+ sorted);
 		root = buildTree(sorted, 0, size-1);
 	}
 	
