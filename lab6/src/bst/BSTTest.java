@@ -17,28 +17,27 @@ class BESTest {
 	private BinarySearchTree<Integer> intTree;
 	private BinarySearchTree<String> stringTree;
 
-    /*
+    
 	@BeforeEach
 	void setUp() {
-		myIntQueue = new FifoQueue<Integer>();
-		myStringQueue = new FifoQueue<String>();
+		intTree = new BinarySearchTree<Integer>();
+		stringTree = new BinarySearchTree<String>();
 	}
 
 	@AfterEach
 	void tearDown(){
-		myIntQueue = null;
-		myStringQueue = null;
-	} */
+		intTree = null;
+		stringTree= null;
+	} 
 
     
-	// /**
-	//  * Test if a newly created queue is empty.
-	//  */
-	// @Test
-	// void testNewFifoQueue() {
-	// 	assertTrue(myIntQueue.isEmpty(), "Wrong result from empty of queue");
-	// 	assertEquals(0, myIntQueue.size(), "Wrong size of empty queue");
-	// }
+	/**
+	 * Test if a newly created queue is empty.
+	 */
+	@Test
+	void testNewTreeIsEmpty() {
+		assertEquals(0, intTree.size(), "Wrong size of empty queue");
+	}
 
 	// /** Test a single offer followed by a single peek. */
 	// @Test

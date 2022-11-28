@@ -40,9 +40,12 @@ public class BSTMain {
         searchTree.add(6);
         searchTree.add(2);
         */
+
+        /*
         for (int i = 25; i>0 ; i--) {
             searchTree.add(i);
         }
+        */
 
         searchTree.printTree();
         visualiser.drawTree(searchTree);
