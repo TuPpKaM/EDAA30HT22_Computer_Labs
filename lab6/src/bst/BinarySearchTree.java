@@ -13,13 +13,16 @@ public class BinarySearchTree<E> {
 	 * Constructs an empty binary search tree.
 	 */
 	public BinarySearchTree() {
+		root = null;
 		size = 0;
+		this.ccomparator = (e1,e2) -> ((Comparable<E>) e1).compareTo(e2);
 	}
 	
 	/**
 	 * Constructs an empty binary search tree, sorted according to the specified comparator.
 	 */
 	public BinarySearchTree(Comparator<E> comparator) {
+		root = null;
 		size = 0;
 		this.ccomparator=comparator;
 	}
@@ -39,9 +42,7 @@ public class BinarySearchTree<E> {
 	}
 
 	private Boolean addNode(BinaryNode<E> node, E x){
-		Comparable newElement = (Comparable) x;
-		Comparable ourElement = (Comparable) node.element;
-		int compareValue = (newElement).compareTo(ourElement);
+		int compareValue = ccomparator.compare(x, node.element);
 		System.out.println(compareValue +""+x);
 		if (compareValue<0) { //smaller
 			if (node.left == null) {
@@ -118,27 +119,33 @@ public class BinarySearchTree<E> {
 	}
 
 	private void printer(BinaryNode<E> node, int height){
-		if (node.left != null){
+		if (node!= null){
 			printer(node.left,height+1);
-		}
-		if (node.right != null){
+			System.out.println("ELEMENT: "+node.element + "    HEIGHT: " + height + ">");
 			printer(node.right,height+1);
 		}
-		System.out.println("ELEMENT: "+node.element + "    HEIGHT: " + height + ">");
+		
 	}
 
 	/** 
 	 * Builds a complete tree from the elements in the tree.
 	 */
 	public void rebuild() {
-
+		ArrayList<E> sorted = new ArrayList<E>();
+		toArray(root, sorted);
+		System.out.println("sorted: "+ sorted);
+		root = buildTree(sorted, 0, size-1);
 	}
 	
 	/*
 	 * Adds all elements from the tree rooted at n in inorder to the list sorted.
 	 */
 	private void toArray(BinaryNode<E> n, ArrayList<E> sorted) {
-	
+		if (n!= null){
+			toArray(n.left,sorted);
+			sorted.add(n.element);
+			toArray(n.right,sorted);
+		}
 	}
 	
 	/*
@@ -148,7 +155,19 @@ public class BinarySearchTree<E> {
 	 * Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(ArrayList<E> sorted, int first, int last) {
-		return null;
+		if (last<first) {  // out of elements to place
+			return null;
+		} else if (first==last) { // last element, put it in
+			return new BinaryNode<E>(sorted.get(first));
+		}
+
+		int middle = (first+last)/2; // + first incase e dont start at 0
+		BinaryNode<E> midNode = new BinaryNode<E>(sorted.get(middle));
+
+		midNode.right = buildTree(sorted, middle+1, last); //right side
+		midNode.left = buildTree(sorted, first, middle-1); //left side
+
+		return midNode;
 	}
 
 	static class BinaryNode<E> {

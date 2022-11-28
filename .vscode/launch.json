@@ -9,6 +9,13 @@
             "name": "Launch BSTMain",
             "request": "launch",
             "mainClass": "bst.BSTMain",
+            "projectName": "EDAA30HT22_Computer_Labs_ec123f13"
+        },
+        {
+            "type": "java",
+            "name": "Launch BSTMain",
+            "request": "launch",
+            "mainClass": "bst.BSTMain",
             "projectName": "EDAA30HT22_Labbar_a98abfb8"
         },
         {
